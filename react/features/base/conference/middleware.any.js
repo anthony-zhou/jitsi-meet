@@ -220,6 +220,16 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
         dispatch(openDisplayNamePrompt(undefined));
     }
 
+    console.log('HERE');
+
+    console.log(getLocalParticipant(getState));
+
+    if (getLocalParticipant(getState)?.email) {
+        APP.API.notifyEmailChanged(getLocalParticipant(getState)?.id, {
+            email: getLocalParticipant(getState)?.email
+        });
+    }
+
     return result;
 }
 
